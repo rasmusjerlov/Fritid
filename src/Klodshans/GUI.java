@@ -50,6 +50,7 @@ public class GUI extends Application {
     }
 
     public void submit () {
+        //Opretter nyt objekt af deltager med input fra TextField nameInput
         Deltager deltager = new Deltager(nameInput.getText());
         Label nyDeltager = new Label(deltager.getName() + " blev tilføjet!");
         pane.add(nyDeltager, 0, 3, 3, 1);
@@ -79,22 +80,26 @@ public class GUI extends Application {
         Label howManyBeers = new Label("Hvor mange øl har " +
                 Storage.deltagere.get(0).getName() + " klodset?");
         pane.add(howManyBeers, 0, 6);
-
         TextField beerAmount = new TextField();
         pane.add(beerAmount, 0, 7);
         Button tilføj = new Button("Tilføj");
         pane.add(tilføj, 0, 8);
+        //TODO setOnAction på tilføj kan ikke læse input fra beerAmount
         tilføj.setOnAction(event ->
                 Storage.deltagere.get(0).setAntalØl(Integer.parseInt(beerAmount.getText())));
         System.out.println(Storage.deltagere.get(0).getAntalØl());
     }
 
 
+/*TODO Metoder herunder er bare copy pastet fra ovenstående. De skal ændres så de passer
+   til enheden*/
+
     public void addShots() {
         Label howMany = new Label("Hvor mange øl har " +
                 Storage.deltagere.get(0).getName() + " klodset?");
         pane.add(howMany, 0, 6);
     }
+
     public void addSnus() {
         Label howMany = new Label("Hvor mange øl har " +
                 Storage.deltagere.get(0).getName() + " klodset?");
