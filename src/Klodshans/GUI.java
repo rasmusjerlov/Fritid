@@ -18,7 +18,7 @@ public class GUI extends Application {
 
     public void start(Stage stage) {
         stage.setTitle("Klodshans");
-        this.initContent(pane);
+        this.initContent(pane, stage);
         stage.setWidth(400);
         stage.setHeight(400);
 
@@ -26,7 +26,8 @@ public class GUI extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    private void initContent(GridPane pane) {
+
+    private void initContent(GridPane pane, Stage stage) {
         // show or hide grid lines
         pane.setGridLinesVisible(false);
         // set padding of the pane
@@ -45,11 +46,11 @@ public class GUI extends Application {
         Button submit = new Button("Submit");
         pane.add(submit, 0, 2);
         GridPane.setMargin(submit, new Insets(10, 10, 10, 50));
-        submit.setOnAction(event -> submit());
+        submit.setOnAction(event -> submit(stage));
 
     }
 
-    public void submit () {
+    public void submit(Stage stage) {
         //Opretter nyt objekt af deltager med input fra TextField nameInput
         Deltager deltager = new Deltager(nameInput.getText());
         Label nyDeltager = new Label(deltager.getName() + " blev tilføjet!");
@@ -62,7 +63,7 @@ public class GUI extends Application {
         //ØLKNAP
         Button øl = new Button("Øl");
         pane.add(øl, 0, 5);
-        øl.setOnAction(event -> addØl());
+        øl.setOnAction(event -> addØl(stage));
         //SHOTSKNAP
         Button shots = new Button("Shots");
         pane.add(shots, 1, 5);
@@ -76,7 +77,8 @@ public class GUI extends Application {
         pane.add(penge, 3, 5);
         penge.setOnAction(event -> addPenge());
     }
-    public void addØl() {
+
+    public void addØl(Stage stage) {
         Label howManyBeers = new Label("Hvor mange øl har " +
                 Storage.deltagere.get(0).getName() + " klodset?");
         pane.add(howManyBeers, 0, 6);
@@ -84,10 +86,15 @@ public class GUI extends Application {
         pane.add(beerAmount, 0, 7);
         Button tilføj = new Button("Tilføj");
         pane.add(tilføj, 0, 8);
-        //TODO setOnAction på tilføj kan ikke læse input fra beerAmount
         tilføj.setOnAction(event ->
-                Storage.deltagere.get(0).setAntalØl(Integer.parseInt(beerAmount.getText())));
-        System.out.println(Storage.deltagere.get(0).getAntalØl());
+                {
+                    Storage.deltagere.get(0).setAntalØl(Integer.parseInt(beerAmount.getText()));
+                    Label beersAdded = new Label(Storage.deltagere.get(0).getAntalØl() +
+                            " øl blev tilføjet til " + Storage.deltagere.get(0).getName());
+                    pane.add(beersAdded, 0, 9);
+                }
+        );
+
     }
 
 
@@ -95,18 +102,18 @@ public class GUI extends Application {
    til enheden*/
 
     public void addShots() {
-        Label howMany = new Label("Hvor mange øl har " +
+        Label howMany = new Label("Hvor mange shots har " +
                 Storage.deltagere.get(0).getName() + " klodset?");
         pane.add(howMany, 0, 6);
     }
 
     public void addSnus() {
-        Label howMany = new Label("Hvor mange øl har " +
+        Label howMany = new Label("Hvor mange skiver har " +
                 Storage.deltagere.get(0).getName() + " klodset?");
         pane.add(howMany, 0, 6);
     }
     public void addPenge() {
-        Label howMany = new Label("Hvor mange øl har " +
+        Label howMany = new Label("Hvor mange penge har " +
                 Storage.deltagere.get(0).getName() + " klodset?");
         pane.add(howMany, 0, 6);
     }

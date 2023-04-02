@@ -53,8 +53,10 @@ public class Deltager {
 
     @Override
     public String toString() {
-        return "Deltager{" +
-                "name='" + name
-                + "'}";
+        return "Deltager: " + name +
+                " beers: " + antalØl +
+                " skiver: " + antalSnus +
+                " shots: " + antalShots +
+                " penge: " + antalPenge;
     }
 }
