@@ -57,7 +57,6 @@ public class GUI extends Application {
         pane.add(nyDeltager, 0, 3, 3, 1);
         Label addWhat = new Label("Hvad har " + deltager.getName() + " klodset?");
         pane.add(addWhat, 0, 4, 4, 1);
-        System.out.println(deltager.toString());
         Storage.deltagere.add(0, deltager);
 
         //ØLKNAP

@@ -57,6 +57,6 @@ public class Deltager {
                 " beers: " + antalØl +
                 " skiver: " + antalSnus +
                 " shots: " + antalShots +
-                " penge: " + antalPenge;
+                " penge: " + antalPenge + "\n";
     }
 }
