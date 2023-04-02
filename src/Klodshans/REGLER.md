@@ -1,3 +1,4 @@
+# Klodshans
 Klodshans skal bruges til at holde styr på vennernes klodser.
 F.eks. hvis man er i byen eller til forfest, og en person i gruppen vælger at klodse en bunding,
 eller bare et par slurke, så skriver man det ind i systemet Klodshans.
