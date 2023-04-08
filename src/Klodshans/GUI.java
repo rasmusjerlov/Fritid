@@ -16,6 +16,7 @@ public class GUI extends Application {
     private String nyDeltager;
     GridPane pane = new GridPane();
 
+
     public void start(Stage stage) {
         stage.setTitle("Klodshans");
         this.initContent(pane, stage);
@@ -85,10 +86,11 @@ public class GUI extends Application {
         pane.add(beerAmount, 0, 7);
         Button tilføj = new Button("Tilføj");
         pane.add(tilføj, 0, 8);
+        Label beersAdded = new Label();
         tilføj.setOnAction(event ->
                 {
                     Storage.deltagere.get(0).setAntalØl(Integer.parseInt(beerAmount.getText()));
-                    Label beersAdded = new Label(Storage.deltagere.get(0).getAntalØl() +
+                    beersAdded.setText(Storage.deltagere.get(0).getAntalØl() +
                             " øl blev tilføjet til " + Storage.deltagere.get(0).getName());
                     pane.add(beersAdded, 0, 9);
                 }
