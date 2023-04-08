@@ -13,8 +13,11 @@ import org.w3c.dom.Text;
 public class GUI extends Application {
     private TextField nameInput;
     private String name;
-    private String nyDeltager;
     GridPane pane = new GridPane();
+    private Label nyDeltager;
+    private Label addWhat;
+    private Label howManyBeers;
+    private Label beersAdded;
 
 
     public void start(Stage stage) {
@@ -28,7 +31,7 @@ public class GUI extends Application {
         stage.show();
     }
 
-    private void initContent(GridPane pane, Stage stage) {
+    public void initContent(GridPane pane, Stage stage) {
         // show or hide grid lines
         pane.setGridLinesVisible(false);
         // set padding of the pane
@@ -54,9 +57,9 @@ public class GUI extends Application {
     public void submit(Stage stage) {
         //Opretter nyt objekt af deltager med input fra TextField nameInput
         Deltager deltager = new Deltager(nameInput.getText());
-        Label nyDeltager = new Label(deltager.getName() + " blev tilføjet!");
+        nyDeltager.setText(deltager.getName() + " blev tilføjet!");
         pane.add(nyDeltager, 0, 3, 3, 1);
-        Label addWhat = new Label("Hvad har " + deltager.getName() + " klodset?");
+        addWhat.setText("Hvad har " + deltager.getName() + " klodset?");
         pane.add(addWhat, 0, 4, 4, 1);
         Storage.deltagere.add(0, deltager);
 
@@ -79,20 +82,27 @@ public class GUI extends Application {
     }
 
     public void addØl(Stage stage) {
-        Label howManyBeers = new Label("Hvor mange øl har " +
+        howManyBeers.setText("Hvor mange øl har " +
                 Storage.deltagere.get(0).getName() + " klodset?");
         pane.add(howManyBeers, 0, 6);
         TextField beerAmount = new TextField();
         pane.add(beerAmount, 0, 7);
         Button tilføj = new Button("Tilføj");
         pane.add(tilføj, 0, 8);
-        Label beersAdded = new Label();
         tilføj.setOnAction(event ->
                 {
                     Storage.deltagere.get(0).setAntalØl(Integer.parseInt(beerAmount.getText()));
                     beersAdded.setText(Storage.deltagere.get(0).getAntalØl() +
                             " øl blev tilføjet til " + Storage.deltagere.get(0).getName());
                     pane.add(beersAdded, 0, 9);
+                    Button reset = new Button("Reset");
+                    pane.add(reset, 1, 8);
+                    reset.setOnAction(event1 -> {
+                        nyDeltager.setText("");
+                        addWhat.setText("");
+                        howManyBeers.setText("");
+                        beersAdded.setText("");
+                    });
                 }
         );
 
