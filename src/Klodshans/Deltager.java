@@ -6,6 +6,7 @@ public class Deltager {
     private int antalShots;
     private int antalSnus;
     private int antalPenge;
+    private int id = 1;
 
     public Deltager(String name) {
         this.name = name;
@@ -13,6 +14,14 @@ public class Deltager {
 
     public String getName() {
         return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setName(String name) {
