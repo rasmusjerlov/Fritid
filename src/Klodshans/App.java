@@ -59,7 +59,7 @@ public class App {
         }
 
 
-//        GUI.launch(GUI.class);
+        GUI.launch(GUI.class);
 
     }
 }
