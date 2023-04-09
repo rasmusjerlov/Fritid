@@ -60,6 +60,8 @@ public class App {
 
 
         GUI.launch(GUI.class);
-
+        for (Deltager d : Storage.deltagere) {
+            System.out.println(d.getName() + "" + d.getAntalØl());
+        }
     }
 }

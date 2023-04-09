@@ -1,5 +1,6 @@
 package Klodshans;
 
+import java.util.*;
 public class Deltager {
     private String name;
     private int antalØl;

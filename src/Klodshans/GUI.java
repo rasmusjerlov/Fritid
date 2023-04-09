@@ -57,11 +57,11 @@ public class GUI extends Application {
     public void submit(Stage stage) {
         //Opretter nyt objekt af deltager med input fra TextField nameInput
         Deltager deltager = new Deltager(nameInput.getText());
-        nyDeltager.setText(deltager.getName() + " blev tilføjet!");
-        pane.add(nyDeltager, 0, 3, 3, 1);
-        addWhat.setText("Hvad har " + deltager.getName() + " klodset?");
-        pane.add(addWhat, 0, 4, 4, 1);
         Storage.deltagere.add(0, deltager);
+        nyDeltager = new Label(deltager.getName() + " blev tilføjet!");
+        pane.add(nyDeltager, 0, 3, 3, 1);
+        addWhat = new Label("Hvad har " + deltager.getName() + " klodset?");
+        pane.add(addWhat, 0, 4, 4, 1);
 
         //ØLKNAP
         Button øl = new Button("Øl");
@@ -82,7 +82,7 @@ public class GUI extends Application {
     }
 
     public void addØl(Stage stage) {
-        howManyBeers.setText("Hvor mange øl har " +
+        howManyBeers = new Label("Hvor mange øl har " +
                 Storage.deltagere.get(0).getName() + " klodset?");
         pane.add(howManyBeers, 0, 6);
         TextField beerAmount = new TextField();
@@ -92,16 +92,21 @@ public class GUI extends Application {
         tilføj.setOnAction(event ->
                 {
                     Storage.deltagere.get(0).setAntalØl(Integer.parseInt(beerAmount.getText()));
-                    beersAdded.setText(Storage.deltagere.get(0).getAntalØl() +
+                    beersAdded = new Label(Storage.deltagere.get(0).getAntalØl() +
                             " øl blev tilføjet til " + Storage.deltagere.get(0).getName());
                     pane.add(beersAdded, 0, 9);
+                    System.out.println(Storage.deltagere.get(0).getName() + " har klodset " + Storage.deltagere.get(0).getAntalØl() + " øl.");
                     Button reset = new Button("Reset");
                     pane.add(reset, 1, 8);
-                    reset.setOnAction(event1 -> {
+                    reset.setOnAction(event2 -> {
+                        nameInput.setText("");
                         nyDeltager.setText("");
                         addWhat.setText("");
                         howManyBeers.setText("");
                         beersAdded.setText("");
+                        beerAmount.setText("");
+
+
                     });
                 }
         );
@@ -110,9 +115,10 @@ public class GUI extends Application {
 
 
     public void addShots() {
-        Label howMany = new Label("Hvor mange shots har " +
+        Label howManyShots = new Label("Hvor mange shots har " +
                 Storage.deltagere.get(0).getName() + " klodset?");
-        pane.add(howMany, 0, 6);
+        pane.add(howManyShots, 0, 6);
+        TextField shotsAmount = new TextField();
     }
 
     public void addSnus() {
